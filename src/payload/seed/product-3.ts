@@ -10,37 +10,6 @@ export const product3: Partial<Product> = {
     description: 'Make a one-time purchase to gain access to this content',
     image: '{{PRODUCT_IMAGE}}',
   },
-  layout: [
-    {
-      blockType: 'content',
-      columns: [
-        {
-          size: 'twoThirds',
-          richText: [
-            {
-              children: [
-                {
-                  text: "This content is completely dynamic using custom layout building blocks configured in the CMS. This can be anything you'd like from rich text and images, to highly designed, complex components.",
-                },
-              ],
-            },
-            {
-              children: [
-                {
-                  text: 'Purchase this product to gain access to the gated content behind the paywall which will appear below.',
-                },
-              ],
-            },
-          ],
-          link: {
-            reference: null,
-            url: '',
-            label: '',
-          },
-        },
-      ],
-    },
-  ],
   enablePaywall: true,
   paywall: [
     {
