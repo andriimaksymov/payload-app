@@ -11,8 +11,6 @@ import { PaywallBlocks } from '../../../_components/PaywallBlocks'
 import { ProductHero } from '../../../_heros/Product'
 import { generateMeta } from '../../../_utilities/generateMeta'
 
-// Force this page to be dynamic so that Next.js does not cache it
-// See the note in '../../../[slug]/page.tsx' about this
 export const dynamic = 'force-dynamic'
 
 export default async function Product({ params: { slug } }) {
@@ -40,6 +38,7 @@ export default async function Product({ params: { slug } }) {
     <React.Fragment>
       <ProductHero product={product} />
       <Blocks blocks={layout} />
+      description {product.description}
       {product?.enablePaywall && <PaywallBlocks productSlug={slug as string} disableTopPadding />}
       <Blocks
         disableTopPadding

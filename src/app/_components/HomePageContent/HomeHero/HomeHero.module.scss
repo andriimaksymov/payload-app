@@ -1,0 +1,59 @@
+@use '../../../_css/queries.scss' as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1.25rem;
+  padding-top: 3.875rem;
+
+  @include small-break {
+    padding-top: 3.5rem;
+    grid-gap: 1rem;
+  }
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  grid-gap: 1rem;
+}
+
+.logo {
+  @include small-break {
+    width: 195px;
+  }
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin: 0;
+  text-transform: uppercase;
+  color: var(--color-primary);
+
+  @include small-break {
+    font-size: 1.125rem;
+  }
+}
+
+.videoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 80vh;
+  min-height: 680px;
+  max-width: 1920px;
+  max-height: 1260px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  object-fit: cover;
+}

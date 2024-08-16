@@ -1,0 +1,79 @@
+@use '../../../_css/queries.scss' as *;
+
+.wrapper {
+  padding: var(--block-padding) 0;
+
+  .sliderWrapper {
+    padding-top: 4rem;
+
+    @include small-break {
+      padding-top: 3rem;
+    }
+
+    :global(.swiper) {
+      padding-inline: 5rem;
+
+      @include small-break {
+        padding-inline: 1.5rem;
+      }
+    }
+
+    :global(.swiper-wrapper) {
+      padding-inline: 5rem;
+      margin-inline: -5rem;
+
+      @include small-break {
+        padding-inline: 1.5rem;
+        margin-inline: -1.5rem;
+      }
+    }
+  }
+}
+
+.slide {
+  position: relative;
+  width: 100%;
+  padding-bottom: 170%;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  grid-gap: 1rem;
+  align-items: flex-end;
+}
+
+.link {
+  font-size: 1.5rem;
+  text-decoration: none;
+
+  @include small-break {
+    font-size: 1.25rem;
+  }
+}
+
+.sliderButtons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  grid-gap: 0.5rem;
+  margin-top: 1.5rem;
+
+  @include small-break {
+    margin-top: 3rem;
+    justify-content: flex-start;
+  }
+}
+
+.sliderButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  border: 0;
+  border-radius: 50%;
+  background-color: var(--color-base-800);
+}

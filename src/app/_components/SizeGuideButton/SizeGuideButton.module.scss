@@ -1,0 +1,106 @@
+@use '../../_css/queries.scss' as *;
+
+.button {
+  span {
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: rgba(61, 90, 128, 1);
+    text-transform: initial;
+    text-decoration: underline;
+  }
+}
+
+.content {
+  display: grid;
+  grid-gap: 2.5rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.closeButton {
+  padding: 0.4375rem;
+  border-radius: 50%;
+  color: #ffffff;
+  background-color: var(--color-base-800);
+
+  &:hover {
+    color: #ffffff;
+    background-color: var(--color-base-800);
+  }
+
+  @include small-break {
+    padding: 0.25rem;
+  }
+}
+
+.title {
+  @include small-break {
+    font-size: 1.5rem;
+  }
+}
+
+.imageWrapper {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 0.5rem;
+  font-size: 0.875rem;
+
+  @include small-break {
+    flex-direction: column-reverse;
+  }
+}
+
+.imageFootnote {
+  display: flex;
+  align-items: center;
+  grid-gap: 0.5rem;
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+.sizes {
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem;
+  grid-gap: 1.5rem;
+  background-color: var(--color-base-50);
+
+  @include small-break {
+    padding: 1rem;
+    flex-direction: column-reverse;
+  }
+}
+
+.modal {
+  --modal-padding: 3rem;
+
+  @include small-break {
+    --modal-padding: 1.5rem;
+  }
+}
+
+.sizeItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  grid-gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  border: 1px solid var(--color-base-100);
+  background-color: var(--color-base-0);
+
+  + .sizeItem {
+    margin-top: 0.5rem;
+  }
+}
+
+.sizeLabel {
+  font-size: 1.125rem;
+  font-weight: 800;
+}

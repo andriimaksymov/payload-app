@@ -1,0 +1,127 @@
+import clsx from 'clsx'
+import Image from 'next/image'
+import { Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import { Product } from '../../../../../payload/payload-types'
+import BatteryIcon from '../../../../_assets/icons/BatteryIcon'
+import BoxIcon from '../../../../_assets/icons/BoxIcon'
+import GoTimeIcon from '../../../../_assets/icons/GoTimeIcon'
+import MagicIcon from '../../../../_assets/icons/MagicIcon'
+import MessageIcon from '../../../../_assets/icons/MessageIcon'
+import SizesIcon from '../../../../_assets/icons/SizesIcon'
+import WellbeingIcon from '../../../../_assets/icons/WellbeingIcon'
+import SizeGuideButton from '../../../../_components/SizeGuideButton'
+
+import 'swiper/css/pagination'
+
+import styles from './Product.module.scss'
+
+type ProductProps = {
+  product: Product
+}
+
+export default function Product({ product }: ProductProps) {
+  return (
+    <div className={styles.root}>
+      <div>
+        <Swiper slidesPerView={1} pagination={{ clickable: true }} modules={[Pagination]}>
+          {product.gallery.map((image, index) => (
+            <SwiperSlide key={index}>
+              <div className={styles.images}>
+                <Image fill src={image.image.url} alt="1" />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+      <div className={styles.inner}>
+        <div className={styles.list}>
+          <button className={styles.colorButton} />
+          <button className={clsx(styles.colorButton, styles.colorButtonActive)} />
+          <button className={styles.colorButton} />
+        </div>
+      </div>
+      <div className={styles.inner}>
+        <div className={styles.titleWrapper}>
+          <h3 className={styles.title}>{product.title}</h3>$100
+        </div>
+        <button className={styles.buyButton}>BUY</button>
+      </div>
+      <div className={styles.inner}>
+        <div className={styles.list}>
+          {product.features.map(feature => (
+            <div key={feature.label} className={styles.badge}>
+              {feature.label}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className={clsx(styles.inner, styles.innerRow)}>
+        <SizesIcon />
+        <div className={styles.innerContent}>
+          <div className={styles.label}>Sizes:</div>
+          <div>{product.sizes.join(',')}</div>
+        </div>
+        <SizeGuideButton />
+      </div>
+      <div className={clsx(styles.inner, styles.innerRow)}>
+        <MagicIcon />
+        <div className={styles.innerContent}>
+          <div className={styles.label}>Magic:</div>
+          <div className={styles.list}>
+            {product.magic.map(i => (
+              <span key={i.label}>{i.label}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className={clsx(styles.inner, styles.innerRow)}>
+        <WellbeingIcon />
+        <div className={styles.innerContent}>
+          <div className={styles.label}>Wellbeing:</div>
+          <div className={styles.list}>
+            {product.wellbeing.map(i => (
+              <span key={i.label}>{i.label}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className={clsx(styles.inner, styles.innerRow)}>
+        <BoxIcon />
+        <div className={styles.innerContent}>
+          <div className={styles.label}>Out-of-box Experience:</div>
+          {/*<div className={styles.list}>{product.outOfBoxExperience}</div>*/}
+        </div>
+      </div>
+      <div className={clsx(styles.inner, styles.innerRow)}>
+        <GoTimeIcon />
+        <div className={styles.innerContent}>
+          <div className={styles.label}>Go Time:</div>
+          {/*<div className={styles.list}>{product.goTime}</div>*/}
+        </div>
+      </div>
+      <div className={clsx(styles.inner, styles.innerRow)}>
+        <BatteryIcon />
+        <div className={styles.innerContent}>
+          <div className={styles.label}>Battery Life/Charger:</div>
+          {/*<div className={styles.list}>{product.battery}</div>*/}
+        </div>
+      </div>
+      <div className={clsx(styles.inner, styles.innerRow)}>
+        <MessageIcon />
+        <div className={styles.innerContent}>
+          <div className={styles.label}>Virtual Leash:</div>
+          SMS Messaging
+          <div className={styles.list}>
+            {product.virtualLeash?.map(i => (
+              <span key={i.label} className={styles.badge}>
+                {i.label}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

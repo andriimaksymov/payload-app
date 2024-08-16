@@ -1,43 +1,69 @@
 @use '../../_css/queries.scss' as *;
 
 .footer {
-  padding: calc(var(--base) * 4) 0;
-  background-color: var(--theme-elevation-1000);
-  color: var(--theme-elevation-0);
-
-  @include small-break {
-    padding: calc(var(--base) * 2) 0;
-  }
+  grid-gap: 1rem;
+  padding-block: 1rem;
+  background-color: var(--color-base-50);
 }
 
-:global([data-theme="dark"]) {
-  .footer {
-    background-color: var(--theme-elevation-50);
-    color: var(--theme-elevation-1000);
-  }
-}
-
-.wrap {
+.inner {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: calc(var(--base) / 2) var(--base);
+  align-items: center;
+
+  @include small-break {
+    grid-gap: 2rem;
+    flex-direction: column;
+  }
 }
 
-.logo {
-  width: 150px;
+.copyright {
+  @include small-break {
+    order: 2;
+    width: 100%;
+  }
+}
+
+.innerLink {
+  position: relative;
+  text-decoration: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: -1rem;
+    width: 1px;
+    background-color: currentColor;
+
+    @include small-break {
+      left: auto;
+      right: -0.5rem;
+    }
+  }
+
+  + .innerLink {
+    &::before {
+      @include small-break {
+        display: none;
+      }
+    }
+  }
 }
 
 .nav {
   display: flex;
-  gap: calc(var(--base) / 4) var(--base);
   align-items: center;
   flex-wrap: wrap;
   opacity: 1;
+  font-size: 0.875rem;
+  color: var(--color-base-500);
   transition: opacity 100ms linear;
   visibility: visible;
 
-  > * {
-    text-decoration: none;
+  @include small-break {
+    justify-content: center;
+    grid-gap: 1rem;
   }
 }

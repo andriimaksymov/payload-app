@@ -5,7 +5,7 @@ import { META } from './meta'
 export const PRODUCTS = `
   query Products {
     Products(limit: 300) {
-      docs {
+      items {
         slug
       }
     }
@@ -18,6 +18,8 @@ export const PRODUCT = `
       docs {
         id
         title
+        description
+        features
         stripeProductID
         ${CATEGORIES}
         layout {

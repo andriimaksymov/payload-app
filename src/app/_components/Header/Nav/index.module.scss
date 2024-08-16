@@ -2,19 +2,57 @@
 
 .nav {
   display: flex;
-  gap: calc(var(--base) / 4) var(--base);
-  align-items: center;
-  flex-wrap: wrap;
-  opacity: 1;
-  transition: opacity 100ms linear;
-  visibility: visible;
+  grid-gap: 1rem;
+  margin: -0.5rem;
 
-  > * {
-    text-decoration: none;
+  @include small-break {
+    flex-direction: column;
+    margin: 0;
+    padding: 3rem 1.5rem;
+    height: 100%;
   }
 }
 
-.hide {
-  opacity: 0;
-  visibility: hidden;
+.menu {
+  @include small-break {
+    position: fixed;
+    top: 2.5rem;
+    left: 0;
+    height: 0;
+    overflow: hidden;
+    width: 100vw;
+    background-color: var(--color-base-50);
+    z-index: 1000;
+  }
+}
+
+.navItem {
+  cursor: pointer;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-base-800);
+  text-decoration: none;
+
+  &:first-child {
+    display: none;
+
+    @include small-break {
+      display: inline-flex;
+    }
+  }
+
+  @include small-break {
+    display: inline-flex;
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+}
+
+.menuButton {
+  display: none;
+  order: 2;
+
+  @include small-break {
+    display: inline-flex;
+  }
 }

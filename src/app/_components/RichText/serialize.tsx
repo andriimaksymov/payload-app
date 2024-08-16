@@ -1,10 +1,8 @@
 import React, { Fragment } from 'react'
 import escapeHTML from 'escape-html'
-import Link from 'next/link'
 import { Text } from 'slate'
 
 import { Label } from '../Label'
-import { LargeBody } from '../LargeBody'
 import { CMSLink } from '../Link'
 
 // eslint-disable-next-line no-use-before-define
@@ -97,10 +95,6 @@ const serialize = (children?: Children): React.ReactNode[] =>
 
       case 'label':
         return <Label key={i}>{serialize(node?.children)}</Label>
-
-      case 'large-body': {
-        return <LargeBody key={i}>{serialize(node?.children)}</LargeBody>
-      }
 
       default:
         return <p key={i}>{serialize(node?.children)}</p>

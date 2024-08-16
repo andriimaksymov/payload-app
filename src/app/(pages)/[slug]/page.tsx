@@ -7,16 +7,9 @@ import { Page } from '../../../payload/payload-types'
 import { staticHome } from '../../../payload/seed/home-static'
 import { fetchDoc } from '../../_api/fetchDoc'
 import { fetchDocs } from '../../_api/fetchDocs'
-import { Blocks } from '../../_components/Blocks'
-import { Hero } from '../../_components/Hero'
+import HomePageContent from '../../_components/HomePageContent'
 import { generateMeta } from '../../_utilities/generateMeta'
 
-// Payload Cloud caches all files through Cloudflare, so we don't need Next.js to cache them as well
-// This means that we can turn off Next.js data caching and instead rely solely on the Cloudflare CDN
-// To do this, we include the `no-cache` header on the fetch requests used to get the data for this page
-// But we also need to force Next.js to dynamically render this page on each request for preview mode to work
-// See https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#dynamic
-// If you are not using Payload Cloud then this line can be removed, see `../../../README.md#cache`
 export const dynamic = 'force-dynamic'
 
 export default async function Page({ params: { slug = 'home' } }) {
@@ -48,17 +41,7 @@ export default async function Page({ params: { slug = 'home' } }) {
     return notFound()
   }
 
-  const { hero, layout } = page
-
-  return (
-    <React.Fragment>
-      <Hero {...hero} />
-      <Blocks
-        blocks={layout}
-        disableTopPadding={!hero || hero?.type === 'none' || hero?.type === 'lowImpact'}
-      />
-    </React.Fragment>
-  )
+  return <React.Fragment>{slug === 'home' && <HomePageContent />}</React.Fragment>
 }
 
 export async function generateStaticParams() {

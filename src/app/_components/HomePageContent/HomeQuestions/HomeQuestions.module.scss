@@ -1,0 +1,85 @@
+@use '../../../_css/queries.scss' as *;
+
+.wrapper {
+  padding-block: var(--block-padding);
+}
+
+.description {
+  font-size: 1.5rem;
+
+  @include small-break {
+    font-size: 0.875rem;
+  }
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5rem;
+
+  @include small-break {
+    grid-gap: 2rem;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1rem;
+}
+
+.item {
+  border: 1px solid var(--color-base-100);
+  border-radius: 24px;
+}
+
+.itemOpen {
+  background-color: var(--color-base-50);
+}
+
+.itemHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  cursor: pointer;
+
+  @include small-break {
+    padding: 1rem;
+  }
+}
+
+.itemTitle {
+  font-size: 1.25rem;
+
+  @include small-break {
+    font-size: 1.125rem;
+  }
+}
+
+.itemIcon {
+  display: flex;
+}
+
+.questionAnswer {
+  padding: 0 1.5rem;
+  color: var(--color-base-500);
+
+  @include small-break {
+    padding: 0 1rem;
+  }
+}
+
+.itemOpen .questionAnswer {
+  padding-bottom: 1.5rem;
+
+  @include small-break {
+    padding-bottom: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+}

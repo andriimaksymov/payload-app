@@ -46,6 +46,97 @@ const Products: CollectionConfig = {
       required: true,
     },
     {
+      name: 'description',
+      type: 'text',
+    },
+    {
+      name: 'sizes',
+      type: 'select',
+      hasMany: true,
+      options: [
+        { label: 'XL', value: 'XL' },
+        { label: 'L', value: 'L' },
+        { label: 'M', value: 'M' },
+        { label: 'S', value: 'S' },
+        { label: 'XS', value: 'XS' },
+      ],
+      required: true,
+    },
+    {
+      name: 'features',
+      type: 'select',
+      hasMany: true,
+      options: [
+        { label: 'Ideal for large pets', value: 'IdealForLargePets' },
+        { label: 'Large battery capacity', value: 'LargeBatteryCapacity' },
+        { label: 'GPS', value: 'GPS' },
+      ],
+    },
+    {
+      name: 'magic',
+      type: 'select',
+      hasMany: true,
+      options: [
+        { label: 'Person-to-pet dialog', value: 'PersonToPetDialog' },
+        { label: 'Pet-to-pet dialog', value: 'PetToPetDialog' },
+      ],
+    },
+    {
+      name: 'wellbeing',
+      type: 'select',
+      hasMany: true,
+      options: [
+        { label: 'Distress detection', value: 'distressDetection' },
+        { label: 'Alerts', value: 'alerts' },
+        { label: 'Reports', value: 'reports' },
+      ],
+    },
+    {
+      name: 'outOfBoxExperience',
+      type: 'select',
+      hasMany: true,
+      options: [{ label: 'Box open/close game', value: 'BoxOpenCloseGame' }],
+    },
+    {
+      name: 'goTime',
+      type: 'select',
+      hasMany: true,
+      options: [{ label: 'Alert - pet waiting at door ', value: 'AlertPetWaitingAtDoor' }],
+    },
+    {
+      name: 'batteryLife',
+      type: 'select',
+      hasMany: true,
+      options: [{ label: '21 days', value: '21 days' }],
+    },
+    {
+      name: 'charger',
+      type: 'select',
+      hasMany: true,
+      options: [{ label: 'USB-C', value: 'USB-C' }],
+    },
+    {
+      name: 'virtualLeash',
+      type: 'select',
+      hasMany: true,
+      options: [{ label: 'Pet-to-owner - "I am sick."', value: 'value1' }],
+    },
+    {
+      name: 'gallery',
+      label: 'Image Gallery',
+      type: 'array',
+      fields: [
+        {
+          name: 'image',
+          label: 'Image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+      ],
+      required: true,
+    },
+    {
       name: 'publishedOn',
       type: 'date',
       admin: {
@@ -68,17 +159,6 @@ const Products: CollectionConfig = {
     {
       type: 'tabs',
       tabs: [
-        {
-          label: 'Content',
-          fields: [
-            {
-              name: 'layout',
-              type: 'blocks',
-              required: true,
-              blocks: [CallToAction, Content, MediaBlock, Archive],
-            },
-          ],
-        },
         {
           label: 'Product Details',
           fields: [

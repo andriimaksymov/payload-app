@@ -7,8 +7,9 @@
   justify-content: center;
   background-color: transparent;
   text-decoration: none;
-  display: inline-flex;
-  padding: 12px 24px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 700;
+  border-radius: 2rem;
   font-family: inherit;
   line-height: inherit;
   font-size: inherit;
@@ -31,6 +32,7 @@
   text-align: center;
   display: flex;
   align-items: center;
+  font-size: 0.875rem;
 }
 
 .appearance--primary {
@@ -61,12 +63,4 @@
 .appearance--none {
   padding: 0;
   color: var(--theme-text);
-
-  &:local() {
-    .label {
-      text-transform: none;
-      line-height: inherit;
-      font-size: inherit;
-    }
-  }
 }

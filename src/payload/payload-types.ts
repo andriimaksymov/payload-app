@@ -36,7 +36,7 @@ export interface Page {
   id: string
   title: string
   publishedOn?: string | null
-  hero: {
+  hero?: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact'
     richText: {
       [k: string]: unknown
@@ -60,6 +60,11 @@ export interface Page {
     media?: string | Media | null
   }
   layout: (
+    {
+      id?: string | null
+      blockName?: string | null
+      blockType: 'technologySlider'
+    }
     | {
         invertBackground?: boolean | null
         richText: {
@@ -120,7 +125,14 @@ export interface Page {
         blockName?: string | null
         blockType: 'mediaBlock'
       }
-    | {
+      | {
+        invertBackground?: boolean | null
+        position?: ('default' | 'fullscreen') | null
+        id?: string | null
+        blockName?: string | null
+        blockType: 'homeTechnology'
+    }
+  | {
         introContent: {
           [k: string]: unknown
         }[]
@@ -191,94 +203,48 @@ export interface Category {
 export interface Product {
   id: string
   title: string
+  description?: string
   publishedOn?: string | null
-  layout: (
-    | {
-        invertBackground?: boolean | null
-        richText: {
-          [k: string]: unknown
-        }[]
-        links?:
-          | {
-              link: {
-                type?: ('reference' | 'custom') | null
-                newTab?: boolean | null
-                reference?: {
-                  relationTo: 'pages'
-                  value: string | Page
-                } | null
-                url?: string | null
-                label: string
-                appearance?: ('primary' | 'secondary') | null
-              }
-              id?: string | null
-            }[]
-          | null
-        id?: string | null
-        blockName?: string | null
-        blockType: 'cta'
-      }
-    | {
-        invertBackground?: boolean | null
-        columns?:
-          | {
-              size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null
-              richText: {
-                [k: string]: unknown
-              }[]
-              enableLink?: boolean | null
-              link?: {
-                type?: ('reference' | 'custom') | null
-                newTab?: boolean | null
-                reference?: {
-                  relationTo: 'pages'
-                  value: string | Page
-                } | null
-                url?: string | null
-                label: string
-                appearance?: ('default' | 'primary' | 'secondary') | null
-              }
-              id?: string | null
-            }[]
-          | null
-        id?: string | null
-        blockName?: string | null
-        blockType: 'content'
-      }
-    | {
-        invertBackground?: boolean | null
-        position?: ('default' | 'fullscreen') | null
-        media: string | Media
-        id?: string | null
-        blockName?: string | null
-        blockType: 'mediaBlock'
-      }
-    | {
-        introContent: {
-          [k: string]: unknown
-        }[]
-        populateBy?: ('collection' | 'selection') | null
-        relationTo?: 'products' | null
-        categories?: (string | Category)[] | null
-        limit?: number | null
-        selectedDocs?:
-          | {
-              relationTo: 'products'
-              value: string | Product
-            }[]
-          | null
-        populatedDocs?:
-          | {
-              relationTo: 'products'
-              value: string | Product
-            }[]
-          | null
-        populatedDocsTotal?: number | null
-        id?: string | null
-        blockName?: string | null
-        blockType: 'archive'
-      }
-  )[]
+  sizes: Array<{
+    label: string
+    value: string
+  }>
+  features: Array<{
+    label: string
+    value: string
+  }>
+  magic: Array<{
+    label: string
+    value: string
+  }>
+  wellbeing: Array<{
+    label: string
+    value: string
+  }>
+  outOfBoxExperience: Array<{
+    label: string
+    value: string
+  }>
+  goTime: Array<{
+    label: string
+    value: string
+  }>
+  batteryLife: Array<{
+    label: string
+    value: string
+  }>
+  charger: Array<{
+    label: string
+    value: string
+  }>
+  virtualLeash: Array<{
+    label: string
+    value: string
+  }>
+  gallery: Array<{
+    id: string
+    image: Media
+  }>
   stripeProductID?: string | null
   priceJSON?: string | null
   enablePaywall?: boolean | null

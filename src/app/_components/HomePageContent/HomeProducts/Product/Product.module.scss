@@ -1,0 +1,87 @@
+.root {
+  font-size: 0.875rem;
+}
+
+.images {
+  position: relative;
+  padding-bottom: 100%;
+}
+
+.inner {
+  padding-block: 1rem;
+
+  + .inner {
+    border-top: 1px solid var(--color-base-100);
+  }
+
+  &.innerSm {
+    padding-block: 0.5rem;
+  }
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 0.5rem;
+}
+
+.badge {
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.25rem 0.625rem;
+  border-radius: 2rem;
+  background-color: var(--color-base-100);
+}
+
+.colorButton {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+
+  &.colorButtonActive {
+    box-shadow: 0 0 0 2px var(--color-base-800);
+  }
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.buyButton {
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  border-radius: 2rem;
+  border: 0;
+  background-color: var(--color-primary);
+}
+
+.innerRow {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  grid-gap: 1.5rem;
+}
+
+.innerContent {
+  display: grid;
+  grid-gap: 0.5rem;
+}
+
+.label {
+  color: var(--color-base-500)
+}

@@ -84,6 +84,11 @@ export const home: Partial<Page> = {
   },
   layout: [
     {
+      blockType: 'homeTechnology',
+      blockName: 'Media Block',
+      position: 'default',
+    },
+    {
       blockName: 'Content Block',
       blockType: 'content',
       columns: [
