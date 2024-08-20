@@ -17,7 +17,7 @@ export async function Header() {
           <Image src="/images/logo-sm.png" alt="1" width={48} height={48} />
         </Link>
         <div className={styles.headerRight}>
-          <IconButton component={Link} href="/" icon={ShoppingBagIcon} />
+          <IconButton component={Link} href="/cart" icon={ShoppingBagIcon} />
         </div>
       </Container>
     </header>

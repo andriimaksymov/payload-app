@@ -1,0 +1,11 @@
+@import "../../_css/queries";
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2.5rem;
+
+  @include small-break {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import clsx from 'clsx'
 
 import { Product } from '../../../payload/payload-types'
 import { AddToCartButton } from '../AddToCartButton'
@@ -21,7 +22,8 @@ export const priceFromJSON = (priceJSON: string, quantity: number = 1, raw?: boo
 
       price = (priceValue / 100).toLocaleString('en-US', {
         style: 'currency',
-        currency: 'USD', // TODO: use `parsed.currency`
+        currency: parsed.currency,
+        maximumFractionDigits: 0,
       })
 
       if (priceType === 'recurring') {
@@ -41,10 +43,11 @@ export const priceFromJSON = (priceJSON: string, quantity: number = 1, raw?: boo
 
 export const Price: React.FC<{
   product: Product
+  className?: string
   quantity?: number
   button?: 'addToCart' | 'removeFromCart' | false
 }> = props => {
-  const { product, product: { priceJSON } = {}, button = 'addToCart', quantity } = props
+  const { product, product: { priceJSON } = {}, button = 'addToCart', quantity, className } = props
 
   const [price, setPrice] = useState<{
     actualPrice: string
@@ -64,7 +67,7 @@ export const Price: React.FC<{
   return (
     <div className={classes.actions}>
       {typeof price?.actualPrice !== 'undefined' && price?.withQuantity !== '' && (
-        <div className={classes.price}>
+        <div className={clsx(classes.price, className)}>
           <p>{price?.withQuantity}</p>
           {quantity > 1 && (
             <small className={classes.priceBreakdown}>{`${price.actualPrice} x ${quantity}`}</small>

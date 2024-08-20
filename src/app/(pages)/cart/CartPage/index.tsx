@@ -5,7 +5,6 @@ import Link from 'next/link'
 
 import { Page, Settings } from '../../../../payload/payload-types'
 import { Button } from '../../../_components/Button'
-import { HR } from '../../../_components/HR'
 import { LoadingShimmer } from '../../../_components/LoadingShimmer'
 import { Media } from '../../../_components/Media'
 import { Price } from '../../../_components/Price'
@@ -45,13 +44,6 @@ export const CartPage: React.FC<{
                   {` to shop.`}
                 </Fragment>
               )}
-              {!user && (
-                <Fragment>
-                  {' '}
-                  <Link href={`/login?redirect=%2Fcart`}>Log in</Link>
-                  {` to view a saved cart.`}
-                </Fragment>
-              )}
             </div>
           ) : (
             <div className={classes.items}>
@@ -59,13 +51,6 @@ export const CartPage: React.FC<{
                 {`There ${cart?.items?.length === 1 ? 'is' : 'are'} ${cart?.items?.length} item${
                   cart?.items?.length === 1 ? '' : 's'
                 } in your cart.`}
-                {!user && (
-                  <Fragment>
-                    {' '}
-                    <Link href={`/login?redirect=%2Fcart`}>Log in</Link>
-                    {` to save your progress.`}
-                  </Fragment>
-                )}
               </div>
               {cart?.items?.map((item, index) => {
                 if (typeof item.product === 'object') {
@@ -74,8 +59,6 @@ export const CartPage: React.FC<{
                     product,
                     product: { id, title, meta, stripeProductID },
                   } = item
-
-                  const isLast = index === (cart?.items?.length || 0) - 1
 
                   const metaImage = meta?.image
 
@@ -134,18 +117,16 @@ export const CartPage: React.FC<{
                           <Price product={product} button={false} quantity={quantity} />
                         </div>
                       </div>
-                      {!isLast && <HR />}
                     </Fragment>
                   )
                 }
                 return null
               })}
-              <HR />
               <h5 className={classes.cartTotal}>{`Total: ${cartTotal.formatted}`}</h5>
               <Button
                 className={classes.checkoutButton}
-                href={user ? '/checkout' : '/login?redirect=%2Fcheckout'}
-                label={user ? 'Checkout' : 'Login to checkout'}
+                href="/checkout"
+                label="Checkout"
                 appearance="primary"
               />
             </div>

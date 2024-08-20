@@ -17,7 +17,7 @@ export default function HomeSwag() {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore
             </p>
-            <Button appearance="primary" label="Explore our Shop" />
+            <Button appearance="secondary" href="/shop" label="Explore our Shop" />
           </div>
           <div className={styles.cardImageWrapper}>
             <Image fill src="/images/swag.png" alt="" />

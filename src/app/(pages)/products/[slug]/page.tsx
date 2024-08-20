@@ -6,10 +6,16 @@ import { notFound } from 'next/navigation'
 import { Product, Product as ProductType } from '../../../../payload/payload-types'
 import { fetchDoc } from '../../../_api/fetchDoc'
 import { fetchDocs } from '../../../_api/fetchDocs'
-import { Blocks } from '../../../_components/Blocks'
+import { AddToCartButton } from '../../../_components/AddToCartButton'
+import BorderedBlock from '../../../_components/BorderedBlock'
+import Container from '../../../_components/Container'
+import Divider from '../../../_components/Divider'
 import { PaywallBlocks } from '../../../_components/PaywallBlocks'
+import { Price } from '../../../_components/Price'
 import { ProductHero } from '../../../_heros/Product'
 import { generateMeta } from '../../../_utilities/generateMeta'
+
+import styles from './index.module.scss'
 
 export const dynamic = 'force-dynamic'
 
@@ -32,54 +38,42 @@ export default async function Product({ params: { slug } }) {
     notFound()
   }
 
-  const { relatedProducts } = product
-
   return (
     <React.Fragment>
+      <Container className={styles.wrap}>
+        <div>
+          <h1>Ordering</h1>
+          <Divider space={5} />
+          <div className={styles.inner}>
+            <h4>Shazam Band</h4>
+            <div className={styles.list}>
+              <BorderedBlock leftLabel="Ultra Plus" rightLabel="$595" />
+              <BorderedBlock leftLabel="Ultra" rightLabel="$395" />
+              <BorderedBlock
+                leftLabel="Size 2"
+                leftLabelFootnote="(XtraSmallOnly)"
+                rightLabel="$395"
+              />
+            </div>
+          </div>
+          <Divider space={5} />
+        </div>
+        <div>
+          <Divider space={2} />
+          <h5>Order Summary</h5>
+          <Divider space={2} />
+          <div className="priceWrapper">
+            <div>
+              Total one-time payment:
+              <span>Including tax</span>
+            </div>
+            <Price product={product} />
+          </div>
+          <AddToCartButton product={product} />
+        </div>
+      </Container>
       <ProductHero product={product} />
-      description {product.description}
       {product?.enablePaywall && <PaywallBlocks productSlug={slug as string} disableTopPadding />}
-      <Blocks
-        disableTopPadding
-        blocks={[
-          {
-            blockType: 'relatedProducts',
-            blockName: 'Related Product',
-            relationTo: 'products',
-            introContent: [
-              {
-                type: 'h4',
-                children: [
-                  {
-                    text: 'Related Products',
-                  },
-                ],
-              },
-              {
-                type: 'p',
-                children: [
-                  {
-                    text: 'The products displayed here are individually selected for this page. Admins can select any number of related products to display here and the layout will adjust accordingly. Alternatively, you could swap this out for the "Archive" block to automatically populate products by category complete with pagination. To manage related posts, ',
-                  },
-                  {
-                    type: 'link',
-                    url: `/admin/collections/products/${product.id}`,
-                    children: [
-                      {
-                        text: 'navigate to the admin dashboard',
-                      },
-                    ],
-                  },
-                  {
-                    text: '.',
-                  },
-                ],
-              },
-            ],
-            docs: relatedProducts,
-          },
-        ]}
-      />
     </React.Fragment>
   )
 }

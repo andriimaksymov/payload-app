@@ -11,6 +11,8 @@ import { mergeOpenGraph } from './_utilities/mergeOpenGraph'
 
 import './_css/app.scss'
 
+import styles from './layout.module.scss'
+
 const figtree = Figtree({
   weight: ['400', '500', '700', '800', '900'],
   style: ['normal', 'italic'],
@@ -28,12 +30,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body className={figtree.className}>
         <Providers>
-          <AdminBar />
-          {/* @ts-expect-error */}
-          <Header />
-          {children}
-          {/* @ts-expect-error */}
-          <Footer />
+          <div className={styles.wrapper}>
+            <AdminBar />
+            {/* @ts-expect-error */}
+            <Header />
+            <main className={styles.main}>{children}</main>
+            {/* @ts-expect-error */}
+            <Footer />
+          </div>
         </Providers>
       </body>
     </html>

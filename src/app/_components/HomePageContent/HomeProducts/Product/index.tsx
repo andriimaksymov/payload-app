@@ -11,7 +11,10 @@ import MagicIcon from '../../../../_assets/icons/MagicIcon'
 import MessageIcon from '../../../../_assets/icons/MessageIcon'
 import SizesIcon from '../../../../_assets/icons/SizesIcon'
 import WellbeingIcon from '../../../../_assets/icons/WellbeingIcon'
+import { Button } from '../../../../_components/Button'
+import { Price } from '../../../../_components/Price'
 import SizeGuideButton from '../../../../_components/SizeGuideButton'
+import ProductColor from '../../../ProductColor'
 
 import 'swiper/css/pagination'
 
@@ -37,22 +40,28 @@ export default function Product({ product }: ProductProps) {
       </div>
       <div className={styles.inner}>
         <div className={styles.list}>
-          <button className={styles.colorButton} />
-          <button className={clsx(styles.colorButton, styles.colorButtonActive)} />
-          <button className={styles.colorButton} />
+          {product.colors.map((color, index) => (
+            <ProductColor key={index} color={color} />
+          ))}
         </div>
       </div>
       <div className={styles.inner}>
         <div className={styles.titleWrapper}>
-          <h3 className={styles.title}>{product.title}</h3>$100
+          <h3 className={styles.title}>{product.title}</h3>
+          <Price className={styles.price} product={product} button={false} />
         </div>
-        <button className={styles.buyButton}>BUY</button>
+        <Button
+          href={`/products/${product.slug}`}
+          appearance="primary"
+          label="BUY"
+          className={styles.buyButton}
+        />
       </div>
       <div className={styles.inner}>
         <div className={styles.list}>
           {product.features.map(feature => (
-            <div key={feature.label} className={styles.badge}>
-              {feature.label}
+            <div key={feature} className={styles.badge}>
+              {feature}
             </div>
           ))}
         </div>
@@ -71,7 +80,7 @@ export default function Product({ product }: ProductProps) {
           <div className={styles.label}>Magic:</div>
           <div className={styles.list}>
             {product.magic.map(i => (
-              <span key={i.label}>{i.label}</span>
+              <span key={i}>{i}</span>
             ))}
           </div>
         </div>
@@ -82,7 +91,7 @@ export default function Product({ product }: ProductProps) {
           <div className={styles.label}>Wellbeing:</div>
           <div className={styles.list}>
             {product.wellbeing.map(i => (
-              <span key={i.label}>{i.label}</span>
+              <span key={i}>{i}</span>
             ))}
           </div>
         </div>
@@ -91,21 +100,37 @@ export default function Product({ product }: ProductProps) {
         <BoxIcon />
         <div className={styles.innerContent}>
           <div className={styles.label}>Out-of-box Experience:</div>
-          {/*<div className={styles.list}>{product.outOfBoxExperience}</div>*/}
+          <div className={styles.list}>
+            {product.outOfBoxExperience.map(i => (
+              <span key={i}>{i}</span>
+            ))}
+          </div>
         </div>
       </div>
       <div className={clsx(styles.inner, styles.innerRow)}>
         <GoTimeIcon />
         <div className={styles.innerContent}>
           <div className={styles.label}>Go Time:</div>
-          {/*<div className={styles.list}>{product.goTime}</div>*/}
+          <div className={styles.list}>
+            {product.goTime.map(i => (
+              <span key={i}>{i}</span>
+            ))}
+          </div>
         </div>
       </div>
       <div className={clsx(styles.inner, styles.innerRow)}>
         <BatteryIcon />
         <div className={styles.innerContent}>
           <div className={styles.label}>Battery Life/Charger:</div>
-          {/*<div className={styles.list}>{product.battery}</div>*/}
+          <div className={styles.list}>
+            {product.batteryLife.map(i => (
+              <span key={i}>{i}</span>
+            ))}{' '}
+            /{' '}
+            {product.charger.map(i => (
+              <span key={i}>{i}</span>
+            ))}
+          </div>
         </div>
       </div>
       <div className={clsx(styles.inner, styles.innerRow)}>
@@ -114,9 +139,9 @@ export default function Product({ product }: ProductProps) {
           <div className={styles.label}>Virtual Leash:</div>
           SMS Messaging
           <div className={styles.list}>
-            {product.virtualLeash?.map(i => (
-              <span key={i.label} className={styles.badge}>
-                {i.label}
+            {product.virtualLeash.map(i => (
+              <span key={i} className={styles.badge}>
+                {i}
               </span>
             ))}
           </div>

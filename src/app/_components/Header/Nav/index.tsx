@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import clsx from 'clsx'
 import { gsap } from 'gsap'
 import Link from 'next/link'
 
@@ -11,11 +12,11 @@ import styles from './index.module.scss'
 
 const navItems = [
   { label: 'Home Page', href: '/' },
-  { label: 'Buy', href: '/' },
-  { label: 'Band', href: '/' },
-  { label: 'Brand', href: '/' },
-  { label: 'Shop', href: '/' },
-  { label: 'Support', href: '/' },
+  { label: 'Buy', href: '/buy' },
+  { label: 'Band', href: '/band' },
+  { label: 'Brand', href: '/brand' },
+  { label: 'Shop', href: '/shop' },
+  { label: 'Support', href: '/support' },
 ]
 
 export default function Nav() {
@@ -48,7 +49,11 @@ export default function Nav() {
 
   return (
     <>
-      <IconButton icon={MenuIcon} onClick={handleToggle} className={styles.menuButton} />
+      <IconButton
+        icon={MenuIcon}
+        onClick={handleToggle}
+        className={clsx(styles.menuButton, styles.iconButton)}
+      />
       <div ref={menuRef} className={styles.menu}>
         <nav className={styles.nav}>
           {navItems.map(item => (

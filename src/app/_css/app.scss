@@ -7,16 +7,12 @@
   --base: 24px;
 
   --gutter-h: 180px;
-  --block-padding: 100px;
+  --block-padding: 6.25rem;
+  --block-padding-sm: 5rem;
 
-  @include large-break {
-    --gutter-h: 144px;
-    --block-padding: 80px;
-  }
-
-  @include mid-break {
-    --gutter-h: 24px;
-    --block-padding: 80px;
+  @include small-break {
+    --block-padding: 5rem;
+    --block-padding-sm: 2.5rem;
   }
 }
 

@@ -205,42 +205,20 @@ export interface Product {
   title: string
   description?: string
   publishedOn?: string | null
-  sizes: Array<{
-    label: string
-    value: string
+  sizes: Array<string>
+  colors: Array<{
+    id: string
+    color1: string
+    color2: string
   }>
-  features: Array<{
-    label: string
-    value: string
-  }>
-  magic: Array<{
-    label: string
-    value: string
-  }>
-  wellbeing: Array<{
-    label: string
-    value: string
-  }>
-  outOfBoxExperience: Array<{
-    label: string
-    value: string
-  }>
-  goTime: Array<{
-    label: string
-    value: string
-  }>
-  batteryLife: Array<{
-    label: string
-    value: string
-  }>
-  charger: Array<{
-    label: string
-    value: string
-  }>
-  virtualLeash: Array<{
-    label: string
-    value: string
-  }>
+  features: Array<string>
+  magic: Array<string>
+  wellbeing: Array<string>
+  outOfBoxExperience: Array<string>
+  goTime: Array<string>
+  batteryLife: Array<string>
+  charger: Array<string>
+  virtualLeash: Array<string>
   gallery: Array<{
     id: string
     image: Media

@@ -6,7 +6,6 @@ import { Page, Settings } from '../../../payload/payload-types'
 import { staticCart } from '../../../payload/seed/cart-static'
 import { fetchDoc } from '../../_api/fetchDoc'
 import { fetchSettings } from '../../_api/fetchGlobals'
-import { Blocks } from '../../_components/Blocks'
 import { Gutter } from '../../_components/Gutter'
 import { Hero } from '../../_components/Hero'
 import { Message } from '../../_components/Message'
@@ -90,7 +89,6 @@ export default async function Cart() {
       <Gutter>
         <CartPage settings={settings} page={page} />
       </Gutter>
-      <Blocks blocks={page?.layout} />
     </Fragment>
   )
 }

@@ -8,6 +8,7 @@ import { MediaBlock } from '../../blocks/MediaBlock'
 import { slugField } from '../../fields/slug'
 import { populateArchiveBlock } from '../../hooks/populateArchiveBlock'
 import { checkUserPurchases } from './access/checkUserPurchases'
+import * as options from './constants'
 import { beforeProductChange } from './hooks/beforeChange'
 import { deleteProductFromCarts } from './hooks/deleteProductFromCarts'
 import { revalidateProduct } from './hooks/revalidateProduct'
@@ -50,58 +51,54 @@ const Products: CollectionConfig = {
       type: 'text',
     },
     {
+      name: 'colors',
+      type: 'array',
+      fields: [
+        {
+          name: 'color1',
+          type: 'text',
+        },
+        {
+          name: 'color2',
+          type: 'text',
+        },
+      ],
+    },
+    {
       name: 'sizes',
       type: 'select',
       hasMany: true,
-      options: [
-        { label: 'XL', value: 'XL' },
-        { label: 'L', value: 'L' },
-        { label: 'M', value: 'M' },
-        { label: 'S', value: 'S' },
-        { label: 'XS', value: 'XS' },
-      ],
-      required: true,
+      options: options.SIZE_OPTIONS,
     },
     {
       name: 'features',
       type: 'select',
       hasMany: true,
-      options: [
-        { label: 'Ideal for large pets', value: 'IdealForLargePets' },
-        { label: 'Large battery capacity', value: 'LargeBatteryCapacity' },
-        { label: 'GPS', value: 'GPS' },
-      ],
+      options: options.FEATURE_OPTIONS,
     },
     {
       name: 'magic',
       type: 'select',
       hasMany: true,
-      options: [
-        { label: 'Person-to-pet dialog', value: 'PersonToPetDialog' },
-        { label: 'Pet-to-pet dialog', value: 'PetToPetDialog' },
-      ],
+      options: options.MAGIC_OPTIONS,
     },
     {
       name: 'wellbeing',
       type: 'select',
       hasMany: true,
-      options: [
-        { label: 'Distress detection', value: 'distressDetection' },
-        { label: 'Alerts', value: 'alerts' },
-        { label: 'Reports', value: 'reports' },
-      ],
+      options: options.WELLBEING_OPTIONS,
     },
     {
       name: 'outOfBoxExperience',
       type: 'select',
       hasMany: true,
-      options: [{ label: 'Box open/close game', value: 'BoxOpenCloseGame' }],
+      options: [{ label: 'Box open/close game', value: 'Box open/close game' }],
     },
     {
       name: 'goTime',
       type: 'select',
       hasMany: true,
-      options: [{ label: 'Alert - pet waiting at door ', value: 'AlertPetWaitingAtDoor' }],
+      options: [{ label: 'Alert - pet waiting at door', value: 'Alert - pet waiting at door' }],
     },
     {
       name: 'batteryLife',
@@ -119,7 +116,7 @@ const Products: CollectionConfig = {
       name: 'virtualLeash',
       type: 'select',
       hasMany: true,
-      options: [{ label: 'Pet-to-owner - "I am sick."', value: 'value1' }],
+      options: [{ label: 'Pet-to-owner - "I am sick."', value: 'Pet-to-owner - I am sick.' }],
     },
     {
       name: 'gallery',

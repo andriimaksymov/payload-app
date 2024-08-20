@@ -15,10 +15,10 @@ export async function Footer() {
         </Link>
         <nav className={styles.nav}>
           <div className={styles.copyright}>Copyright © 2024 Shazam! Inc. All rights reserved.</div>
-          <Link href="/" className={styles.innerLink}>
+          <Link href="/privacy-policy" className={styles.innerLink}>
             Privacy Policy
           </Link>
-          <Link href="/" className={styles.innerLink}>
+          <Link href="/terms-of-use" className={styles.innerLink}>
             Terms of Use
           </Link>
         </nav>

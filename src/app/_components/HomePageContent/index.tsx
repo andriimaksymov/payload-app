@@ -1,5 +1,3 @@
-import { ArchiveBlock } from '../../_blocks/ArchiveBlock'
-import { CollectionArchive } from '../../_components/CollectionArchive'
 import HomeHero from '../../_components/HomePageContent/HomeHero'
 import HomeProducts from '../../_components/HomePageContent/HomeProducts'
 import HomeQuestions from '../../_components/HomePageContent/HomeQuestions'
@@ -14,8 +12,6 @@ export default function HomePageContent() {
       <HomeProducts />
       <HomeSwag />
       <HomeQuestions />
-      <ArchiveBlock blockType="archive" introContent={[]} />
-      <CollectionArchive />
     </>
   )
 }

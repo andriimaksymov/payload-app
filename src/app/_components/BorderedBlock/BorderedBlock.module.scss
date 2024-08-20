@@ -1,0 +1,24 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  grid-gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid var(--color-base-100);
+  border-radius: 1.5rem;
+}
+
+.leftLabel {
+  font-size: 1.125rem;
+  font-weight: 800;
+
+  .footnote {
+    color: var(--color-base-300);
+  }
+}
+
+.rightLabel {
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--color-base-600)
+}

@@ -1,0 +1,26 @@
+.root {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-base-100);
+}
+
+.space1 {
+  margin-block: .5rem;
+}
+
+.space2 {
+  margin-block: 1rem;
+}
+
+.space3 {
+  margin-block: 1.5rem;
+}
+
+.space4 {
+  margin-block: 2rem;
+}
+
+.space5 {
+  margin-block: 2.5rem;
+}

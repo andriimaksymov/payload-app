@@ -1,0 +1,24 @@
+.wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 8rem;
+  padding-block: var(--block-padding-sm);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 0.5rem;
+}
+
+.listSizes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Adjust minmax value based on your needs */
+  gap: 16px;
+}

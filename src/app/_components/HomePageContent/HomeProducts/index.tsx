@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import ArrowLeftIcon from '../../../_assets/icons/ArrowLeftIcon'
 import ArrowRightIcon from '../../../_assets/icons/ArrowRightIcon'
 import Container from '../../../_components/Container'
-import Product from '../../../_components/HomePageContent/HomeProducts/Product'
+import ProductItem from '../../../_components/ProductList/ProductItem'
 import ScrollAnimated from '../../../_components/ScrollAnimated'
 
 import 'swiper/css'
@@ -21,7 +21,9 @@ export default function HomeProducts() {
   const [products, setProducts] = useState([])
 
   async function fetchProducts() {
-    const req = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/products?`)
+    const req = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/products?where[categories][in][0]=1`,
+    )
     const json = await req.json()
     setProducts(json.docs)
   }
@@ -43,53 +45,57 @@ export default function HomeProducts() {
             </Link>
           </ScrollAnimated>
         </div>
+        <div className={styles.sliderWrapper}>
+          <Swiper
+            spaceBetween={40}
+            slidesPerView={3}
+            breakpoints={{
+              0: {
+                slidesPerView: 1.15,
+                spaceBetween: 16,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 40,
+              },
+              1400: {
+                slidesPerView: 4,
+                spaceBetween: 40,
+              },
+            }}
+            modules={[Navigation]}
+            navigation={{
+              prevEl: prevRef.current,
+              nextEl: nextRef.current,
+            }}
+            onBeforeInit={swiper => {
+              if (swiper.params.navigation) {
+                swiper.params.navigation.prevEl = prevRef.current
+                swiper.params.navigation.nextEl = nextRef.current
+              }
+            }}
+          >
+            {products.map(
+              product =>
+                product && (
+                  <SwiperSlide key={product.id}>
+                    <ScrollAnimated>
+                      <ProductItem isExtendedInfo={true} product={product} />
+                    </ScrollAnimated>
+                  </SwiperSlide>
+                ),
+            )}
+          </Swiper>
+          <Container className={styles.sliderButtons}>
+            <button ref={prevRef} className={styles.sliderButton}>
+              <ArrowLeftIcon />
+            </button>
+            <button ref={nextRef} className={styles.sliderButton}>
+              <ArrowRightIcon />
+            </button>
+          </Container>
+        </div>
       </Container>
-      <div className={styles.sliderWrapper}>
-        <Swiper
-          spaceBetween={40}
-          slidesPerView={3}
-          breakpoints={{
-            0: {
-              slidesPerView: 1.15,
-              spaceBetween: 40,
-            },
-            1024: {
-              slidesPerView: 3,
-              spaceBetween: 40,
-            },
-          }}
-          modules={[Navigation]}
-          navigation={{
-            prevEl: prevRef.current,
-            nextEl: nextRef.current,
-          }}
-          onBeforeInit={swiper => {
-            if (swiper.params.navigation) {
-              swiper.params.navigation.prevEl = prevRef.current
-              swiper.params.navigation.nextEl = nextRef.current
-            }
-          }}
-        >
-          {products.map(
-            product =>
-              product && (
-                <SwiperSlide key={product.id}>
-                  <ScrollAnimated>
-                    <Product product={product} />
-                  </ScrollAnimated>
-                </SwiperSlide>
-              ),
-          )}
-        </Swiper>
-        <Container className={styles.sliderButtons}>
-          <button ref={prevRef} className={styles.sliderButton}>
-            <ArrowLeftIcon />
-          </button>
-          <button ref={nextRef} className={styles.sliderButton}>
-            <ArrowRightIcon />
-          </button>
-        </Container>
-      </div>
     </div>
   )
 }

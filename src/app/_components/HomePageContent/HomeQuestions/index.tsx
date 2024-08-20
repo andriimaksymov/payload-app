@@ -109,7 +109,7 @@ export default function HomeQuestions() {
             <p className={styles.description}>We are happy to answer them</p>
           </ScrollAnimated>
           <ScrollAnimated delay={0.2}>
-            <Button label="Support" href="/support" appearance="primary" />
+            <Button label="Support" href="/support" appearance="secondary" />
           </ScrollAnimated>
         </div>
         <ScrollAnimated>

@@ -1,5 +1,6 @@
-import React from 'react'
-import { FieldValues, UseFormRegister, Validate } from 'react-hook-form'
+import React, { ComponentPropsWithoutRef } from 'react'
+import { FieldValues, UseFormRegister } from 'react-hook-form'
+import clsx from 'clsx'
 
 import classes from './index.module.scss'
 
@@ -12,7 +13,10 @@ type Props = {
   type?: 'text' | 'number' | 'password' | 'email'
   validate?: (value: string) => boolean | string
   disabled?: boolean
-}
+  multiline?: boolean
+  variant?: 'outlined'
+} & ComponentPropsWithoutRef<'input'> &
+  ComponentPropsWithoutRef<'textarea'>
 
 export const Input: React.FC<Props> = ({
   name,
@@ -23,15 +27,20 @@ export const Input: React.FC<Props> = ({
   type = 'text',
   validate,
   disabled,
+  multiline,
+  variant,
+  ...props
 }) => {
+  const Component = multiline ? 'textarea' : 'input'
+
   return (
     <div className={classes.inputWrap}>
       <label htmlFor="name" className={classes.label}>
         {label}
         {required ? <span className={classes.asterisk}>&nbsp;*</span> : ''}
       </label>
-      <input
-        className={[classes.input, error && classes.error].filter(Boolean).join(' ')}
+      <Component
+        className={clsx(classes.input, error && classes.error, variant && classes[variant])}
         {...{ type }}
         {...register(name, {
           required,
@@ -46,6 +55,7 @@ export const Input: React.FC<Props> = ({
             : {}),
         })}
         disabled={disabled}
+        {...props}
       />
       {error && (
         <div className={classes.errorMessage}>

@@ -45,7 +45,7 @@ export default function HomeHero() {
         </ScrollAnimated>
       </Container>
       <div ref={videoContainerRef} className={styles.videoContainer}>
-        <video muted autoPlay loop className={styles.video} src="/video.mp4" />
+        <video muted autoPlay loop className={styles.video} src="/shazam_hero_video.mp4" />
       </div>
     </div>
   )

@@ -1,5 +1,6 @@
 .root {
   font-size: 0.875rem;
+  text-decoration: none;
 }
 
 .images {
@@ -33,18 +34,6 @@
   background-color: var(--color-base-100);
 }
 
-.colorButton {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 0;
-  cursor: pointer;
-
-  &.colorButtonActive {
-    box-shadow: 0 0 0 2px var(--color-base-800);
-  }
-}
-
 .titleWrapper {
   display: flex;
   justify-content: space-between;
@@ -60,15 +49,7 @@
 }
 
 .buyButton {
-  font-size: 0.875rem;
-  letter-spacing: 0.02em;
-  font-weight: 700;
-  color: #ffffff;
-  cursor: pointer;
   padding: 0.75rem 1.5rem;
-  border-radius: 2rem;
-  border: 0;
-  background-color: var(--color-primary);
 }
 
 .innerRow {

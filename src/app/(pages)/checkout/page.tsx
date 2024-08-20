@@ -5,20 +5,12 @@ import { Settings } from '../../../payload/payload-types'
 import { fetchSettings } from '../../_api/fetchGlobals'
 import { Gutter } from '../../_components/Gutter'
 import { Message } from '../../_components/Message'
-import { LowImpactHero } from '../../_heros/LowImpact'
-import { getMeUser } from '../../_utilities/getMeUser'
 import { mergeOpenGraph } from '../../_utilities/mergeOpenGraph'
 import { CheckoutPage } from './CheckoutPage'
 
 import classes from './index.module.scss'
 
 export default async function Checkout() {
-  await getMeUser({
-    nullUserRedirect: `/login?error=${encodeURIComponent(
-      'You must be logged in to checkout.',
-    )}&redirect=${encodeURIComponent('/checkout')}`,
-  })
-
   let settings: Settings | null = null
 
   try {
@@ -29,7 +21,7 @@ export default async function Checkout() {
   }
 
   return (
-    <Fragment>
+    <div className={classes.wrapper}>
       {!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY && (
         <Gutter>
           <Message
@@ -58,51 +50,8 @@ export default async function Checkout() {
           />
         </Gutter>
       )}
-      <LowImpactHero
-        type="lowImpact"
-        media={null}
-        richText={[
-          {
-            type: 'h1',
-            children: [
-              {
-                text: 'Checkout',
-              },
-            ],
-          },
-          {
-            type: 'paragraph',
-            children: [
-              {
-                text: `This is a self-hosted, secure checkout using Stripe's Payment Element component. To create a mock purchase, use a `,
-              },
-              {
-                type: 'link',
-                url: 'https://stripe.com/docs/testing#cards',
-                children: [
-                  {
-                    text: 'test credit card',
-                  },
-                ],
-              },
-              {
-                text: ' like ',
-              },
-              {
-                text: '4242 4242 4242 4242',
-                bold: true,
-              },
-              {
-                text: ' with any future date and CVC. An order will be generated in Stripe and will appear in your account. In production, this checkout form will require a real card with sufficient funds.',
-              },
-            ],
-          },
-        ]}
-      />
-      <Gutter className={classes.checkoutPage}>
-        <CheckoutPage settings={settings} />
-      </Gutter>
-    </Fragment>
+      <CheckoutPage settings={settings} />
+    </div>
   )
 }
 

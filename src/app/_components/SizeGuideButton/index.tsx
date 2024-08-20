@@ -94,7 +94,7 @@ export default function SizeGuideButton() {
             </div>
             <div>
               {sizes.map(size => (
-                <div className={styles.sizeItem}>
+                <div key={size.label} className={styles.sizeItem}>
                   <div className={styles.sizeLabel}>{size.label}</div>
                   <div className={styles.sizeValue}>{size.value}</div>
                 </div>
