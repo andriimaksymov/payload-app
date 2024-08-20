@@ -135,6 +135,7 @@ export const CollectionArchive: React.FC<Props> = props => {
           )
 
           const json = await req.json()
+          console.log('111111111', json);
           clearTimeout(timer)
 
           const { docs } = json as { docs: Product[] }

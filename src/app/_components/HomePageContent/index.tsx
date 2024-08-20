@@ -3,6 +3,7 @@ import HomeProducts from '../../_components/HomePageContent/HomeProducts'
 import HomeQuestions from '../../_components/HomePageContent/HomeQuestions'
 import HomeSwag from '../../_components/HomePageContent/HomeSwag'
 import TechnologySlider from '../../_components/HomePageContent/TechnologySlider'
+import { CollectionArchive } from '@/app/_components/CollectionArchive';
 
 export default function HomePageContent() {
   return (
@@ -12,6 +13,7 @@ export default function HomePageContent() {
       <HomeProducts />
       <HomeSwag />
       <HomeQuestions />
+      <CollectionArchive />
     </>
   )
 }
