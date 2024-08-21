@@ -3,7 +3,7 @@ import { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 
-import { Page } from '../../../payload/payload-types'
+import { Page, Product as ProductType } from '../../../payload/payload-types'
 import { staticHome } from '../../../payload/seed/home-static'
 import { fetchDoc } from '../../_api/fetchDoc'
 import { fetchDocs } from '../../_api/fetchDocs'
@@ -16,8 +16,10 @@ export default async function Page({ params: { slug = 'home' } }) {
   const { isEnabled: isDraftMode } = draftMode()
 
   let page: Page | null = null
+  let products: any = null
 
   try {
+    products = await fetchDocs<ProductType>('products')
     page = await fetchDoc<Page>({
       collection: 'pages',
       slug,
@@ -41,7 +43,9 @@ export default async function Page({ params: { slug = 'home' } }) {
     return notFound()
   }
 
-  return <React.Fragment>{slug === 'home' && <HomePageContent />}</React.Fragment>
+  return (
+    <React.Fragment>{slug === 'home' && <HomePageContent products={products} />}</React.Fragment>
+  )
 }
 
 export async function generateStaticParams() {

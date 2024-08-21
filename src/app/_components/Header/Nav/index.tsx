@@ -12,7 +12,7 @@ import styles from './index.module.scss'
 
 const navItems = [
   { label: 'Home Page', href: '/' },
-  { label: 'Buy', href: '/buy' },
+  { label: 'Buy', href: '/products/' },
   { label: 'Band', href: '/band' },
   { label: 'Brand', href: '/brand' },
   { label: 'Shop', href: '/shop' },

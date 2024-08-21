@@ -5,15 +5,16 @@ import HomeQuestions from '../../_components/HomePageContent/HomeQuestions'
 import HomeSwag from '../../_components/HomePageContent/HomeSwag'
 import TechnologySlider from '../../_components/HomePageContent/TechnologySlider'
 
-export default function HomePageContent() {
+export default function HomePageContent({ products }) {
   return (
     <>
+      {products && products.length > 0 && products.map(product => <span>{product.slug}</span>)}
       <HomeHero />
       <TechnologySlider />
       <HomeProducts />
       <HomeSwag />
       <HomeQuestions />
-      <CollectionArchive />
+      <CollectionArchive relationTo="products" categories={['2']} />
     </>
   )
 }

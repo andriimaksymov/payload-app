@@ -119,7 +119,7 @@ export const CollectionArchive: React.FC<Props> = props => {
             ...(categories
               ? {
                   categories: {
-                    in: categories,
+                    in: 1,
                   },
                 }
               : {}),
